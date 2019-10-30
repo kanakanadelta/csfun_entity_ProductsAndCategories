@@ -2961,16 +2961,6 @@
   "RootNamespace": "ProductsAndCategories",
   "Documents": [
     {
-      "FilePath": "Views/Home/NewProduct.cshtml",
-      "TargetPath": "Views/Home/NewProduct.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "Views/Home/NewCategory.cshtml",
-      "TargetPath": "Views/Home/NewCategory.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "Views/Home/Products.cshtml",
       "TargetPath": "Views/Home/Products.cshtml",
       "FileKind": "mvc"

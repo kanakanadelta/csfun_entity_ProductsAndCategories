@@ -28,17 +28,30 @@ namespace ProductsAndCategories.Controllers
         }
         public IActionResult Categories()
         {
-            return View();
-        }
-        public IActionResult NewProduct()
-        {
-            return View();
-        }
-        public IActionResult NewCategory()
-        {
+            List<Category> allCategories = dbContext
+            .Categories
+            .ToList();
+            ViewBag.Categories = allCategories;
             return View();
         }
 
+        // // // // /
+        // CREATE //
+        [HttpPost("createCategory")]
+        public IActionResult CreateCategory(Category newCategory)
+        {
+            if(ModelState.IsValid)
+            {
+                dbContext.Add(newCategory);
+                dbContext.SaveChanges();
+                return RedirectToAction("Categories");
+            }
+            else
+                return View("Categories");
+        }
+
+        // // // //
+        // ERROR //
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
