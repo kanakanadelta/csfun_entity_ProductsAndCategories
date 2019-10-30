@@ -10,6 +10,13 @@ namespace ProductsAndCategories.Controllers
 {
     public class HomeController : Controller
     {
+        // context dependency injection
+        private PADContext dbContext;
+
+        public HomeController(PADContext context)
+        {
+            dbContext = context;
+        }
         public IActionResult Index()
         {
             return View();
