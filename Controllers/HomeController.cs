@@ -15,7 +15,19 @@ namespace ProductsAndCategories.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Products()
+        {
+            return View();
+        }
+        public IActionResult Categories()
+        {
+            return View();
+        }
+        public IActionResult NewProduct()
+        {
+            return View();
+        }
+        public IActionResult NewCategory()
         {
             return View();
         }
