@@ -24,6 +24,10 @@ namespace ProductsAndCategories.Controllers
 
         public IActionResult Products()
         {
+            List<Product> allProducts = dbContext
+            .Products
+            .ToList();
+            ViewBag.Products = allProducts;
             return View();
         }
         public IActionResult Categories()
@@ -46,8 +50,32 @@ namespace ProductsAndCategories.Controllers
                 dbContext.SaveChanges();
                 return RedirectToAction("Categories");
             }
-            else
+            else{
+                List<Category> allCategories = dbContext
+                .Categories
+                .ToList();
+                ViewBag.Categories = allCategories;
                 return View("Categories");
+            }
+        }
+
+        [HttpPost("createProduct")]
+        public IActionResult CreateProduct(Product newProduct)
+        {
+            if(ModelState.IsValid)
+            {
+                dbContext.Add(newProduct);
+                dbContext.SaveChanges();
+                return RedirectToAction("Products");
+            }
+            else
+            {
+                List<Product> allProducts = dbContext
+                .Products
+                .ToList();
+                ViewBag.Categories = allProducts;
+                return View("Products");
+            }
         }
 
         // // // //

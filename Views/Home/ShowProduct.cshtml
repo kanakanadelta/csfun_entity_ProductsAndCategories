@@ -1,0 +1,28 @@
+@{
+  ViewData["Title"] = "Product";
+}
+
+
+<div class="page-in-half">
+  <!-- New Categories of Product -->
+  <div>
+    <h2>Existing Categories</h2>
+    <ul>
+      @foreach(var c in ViewBag.Categories)
+      {
+        <li>
+          <a href='/categories/@c.CategoryId'>@c.Name</a>
+        </li>
+      }
+    </ul>
+  </div>
+  <!-- Existing Categories List -->
+  @model Association
+  <div>    
+    <h2>Add Category:</h2>
+    <form asp-controller="Home" asp-action="CreateAssociation">
+
+    </form>
+  </div>  
+</div>
+

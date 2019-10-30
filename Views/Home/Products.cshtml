@@ -1,14 +1,64 @@
 ﻿@{
     ViewData["Title"] = "Products";
 }
-<div>
+<div class="page-in-half">
     <!-- New Product Form Div -->
     <div>
-
+        <h2>New Product</h2>
+        @model Product
+        <form asp-controller="Home" asp-action="CreateProduct">
+            <table>
+                <!-- Name -->
+                <tr>
+                    <td>
+                        <label asp-for="Name"></label>
+                    </td>
+                    <td>
+                        <input asp-for="Name">
+                    </td>
+                    <td>
+                        <p asp-validation-for="Name"></p>
+                    </td>
+                </tr>
+                <!-- Name -->
+                <tr>
+                    <td>
+                        <label asp-for="Description"></label>
+                    </td>
+                    <td>
+                        <input asp-for="Description">
+                    </td>
+                    <td>
+                        <p asp-validation-for="Description"></p>
+                    </td>
+                </tr>
+                <!-- Name -->
+                <tr>
+                    <td>
+                        <label asp-for="Price"></label>
+                    </td>
+                    <td>
+                        <input type="number" asp-for="Price">
+                    </td>
+                    <td>
+                        <p asp-validation-for="Price"></p>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit" value="Create">
+        </form>
     </div>
     <!-- Existing Products List -->
     <div>
-
+        <h2>Existing Products</h2>
+        <ul>
+            @foreach(var p in ViewBag.Products)
+            {
+                <li>
+                    <a href='/products/@p.ProductId'>@p.Name</a>
+                </li>
+            }
+        </ul>
     </div>
 </div>
 
