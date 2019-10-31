@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using ProductsAndCategories.Models;
 
 namespace ProductsAndCategories.Controllers
@@ -76,6 +77,60 @@ namespace ProductsAndCategories.Controllers
                 ViewBag.Categories = allProducts;
                 return View("Products");
             }
+        }
+
+        [HttpPost("Home/products/associate/{productId}")]
+        public IActionResult ProductAssociation(int productId, int categoryId)
+        {
+            
+            Product product = dbContext
+            .Products
+            .FirstOrDefault(p => p.ProductId == productId);
+
+            
+            Category category = dbContext
+            .Categories
+            .FirstOrDefault(c => c.CategoryId == categoryId);
+
+            Association ass = new Association(product, category, productId, categoryId);
+            dbContext.Add(ass);
+            dbContext.SaveChanges();
+
+            return RedirectToAction("ShowProduct", new {productId = productId});
+        }
+        // // // //
+        // SHOW //
+        [HttpGet("Home/products/{productId}")]
+        public IActionResult ShowProduct(int productId)
+        {
+            Product viewProduct = dbContext
+            .Products
+            .FirstOrDefault(p => p.ProductId == productId);
+            
+            ViewBag.Product = viewProduct;
+
+            var productWithCategories = dbContext.Products
+                .Include(product => product.Associations)
+                .ThenInclude(ass => ass.Category)
+                .FirstOrDefault(product => product.ProductId == productId);
+
+            List<Association> associations = dbContext.Associations.Include(a => a.Category).ToList();
+            List<Category> categories = dbContext.Categories.ToList();
+
+            List<Category> noAssociations = new List<Category>();
+            
+            foreach(var c in categories)
+            {
+                if(!viewProduct.Associations.Any(a => a.Category == c))
+                {
+                    noAssociations.Add(c);
+                }
+            }
+
+            ViewBag.Categories = categories;
+            ViewBag.NoAssociations = noAssociations;
+            
+            return View(productWithCategories);
         }
 
         // // // //

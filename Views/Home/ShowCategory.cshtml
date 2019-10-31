@@ -1,31 +1,31 @@
 @{
-  ViewData["Title"] = "Product";
+  ViewData["Title"] = "Category";
 }
 
-@model Product
+@model Category
 <div class="text-center">
   <h1>@Model.Name</h1>
   <h3>$@Model.Price.ToString("#.##")</h3>
   <div class="page-in-half">
     <!-- New Categories of Product -->
     <div>
-      <h2>Existing Categories</h2>
+      <h2>Existing Products</h2>
       <ul>
         @foreach(var a in @Model.Associations)
         {
-          <li>@a.Category.Name</li>
+          <li>@a.Product.Name</li>
         }
       </ul>
     </div>
     <!-- Existing Categories List -->
     <div>    
-      <h2>Add Category:</h2>
-      <form action='associate/@Model.ProductId' method="POST">
-        <input type="hidden" name="productId" value='@Model.ProductId'>
-        <select name="categoryId">
+      <h2>Add Product:</h2>
+      <form action='associate/@Model.CategoryId' method="POST">
+        <input type="hidden" name="categoryId" value='@Model.CategoryId'>
+        <select name="productId">
           @foreach(var nA in @ViewBag.NoAssociations)
           {
-            <option value='@nA.CategoryId'>@nA.Name</option>
+            <option value='@nA.ProductId'>@nA.Name</option>
           }
         </select>
         <input type="submit" value="Add">

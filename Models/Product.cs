@@ -25,7 +25,13 @@ namespace ProductsAndCategories.Models
     [DataType(DataType.Currency)]
     public decimal Price { get; set; } 
 
-    public List<Category> Categories { get; set; }
+    public List<Association> Associations { get; set; }
+
+    public Product()
+    {
+      Associations = new List<Association>();
+    }
+
     public DateTime CreatedAt {get;set;} = DateTime.Now;
     public DateTime UpdatedAt {get;set;} = DateTime.Now;
   }

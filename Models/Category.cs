@@ -15,7 +15,12 @@ namespace ProductsAndCategories.Models
         [Required]
         public string Name { get; set; }
 
-        public List<Association> Products { get; set; }
+        public List<Association> Associations { get; set; }
+
+        public Category()
+        {
+            Associations = new List<Association>();
+        }
 
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;

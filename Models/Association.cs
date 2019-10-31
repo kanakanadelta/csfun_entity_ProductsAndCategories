@@ -17,6 +17,23 @@ namespace ProductsAndCategories.Models
         public Product Product { get; set; }
         public Category Category { get; set; }
 
+        public Association()
+        {
+
+        }
+
+        public Association(
+            Product p, 
+            Category c, 
+            int pId, 
+            int cId)
+        {
+            Product = p;
+            Category = c;
+            ProductId = pId;
+            CategoryId = cId;   
+        }
+
         public DateTime CreatedAt {get;set;} = DateTime.Now;
         public DateTime UpdatedAt {get;set;} = DateTime.Now;
     }

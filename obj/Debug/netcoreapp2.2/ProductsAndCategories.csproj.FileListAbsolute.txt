@@ -28,3 +28,4 @@
 /Users/rtongson/Documents/csharp/entity/ProductsAndCategories/obj/Debug/netcoreapp2.2/ProductsAndCategories.dll
 /Users/rtongson/Documents/csharp/entity/ProductsAndCategories/obj/Debug/netcoreapp2.2/ProductsAndCategories.pdb
 /Users/rtongson/Documents/csharp/entity/ProductsAndCategories/obj/Debug/netcoreapp2.2/ProductsAndCategories.csproj.CopyComplete
+/Users/rtongson/Documents/csharp/entity/ProductsAndCategories/obj/Debug/netcoreapp2.2/Razor/Views/Home/ShowProduct.g.cshtml.cs
